@@ -21,8 +21,9 @@ public class ImageService {
     public ImageResponse generateImageOptions(String prompt) {
         ImageResponse imageResponse = openAiImageModel.call(new ImagePrompt(prompt,
                 OpenAiImageOptions.builder()
+                        .model("dall-e-2")
                         .quality("hd")
-                        .N(4)
+                        .N(2)
                         .height(1024)
                         .width(1024)
                         .build())
