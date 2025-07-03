@@ -50,10 +50,9 @@ public class GenAIController {
     ) throws IOException {
         ImageResponse imageResponse = imageService.generateImageOptions(prompt, n, quality, width, height);
         //Streams to get urls from ImageResponse
-        List<String> imageUrls = imageResponse.getResults().stream()
+        return imageResponse.getResults().stream()
                 .map(result -> result.getOutput().getUrl())
                 .toList();
-        return imageUrls;
     }
 
     @GetMapping("recipe-creator")
@@ -62,6 +61,7 @@ public class GenAIController {
             @RequestParam(defaultValue = "any") String cuisine,
             @RequestParam(defaultValue = "") String dietaryRestrictions
     ) {
+
         return recipeService.createReceipe(ingredients, cuisine, dietaryRestrictions);
     }
 }
